@@ -19,7 +19,6 @@ import { FormattedMessage, history, SelectLang, useIntl, useModel, Helmet } from
 import { Alert, message, Tabs } from 'antd';
 import Settings from '../../../../config/defaultSettings';
 import React, { useState } from 'react';
-import { flushSync } from 'react-dom';
 import {userLoginUsingPOST} from "@/services/wsapi-backend/userController";
 
 const ActionIcons = () => {

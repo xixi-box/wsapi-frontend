@@ -5,12 +5,6 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseInt_ = {
-    code?: number;
-    data?: number;
-    message?: string;
-  };
-
   type BaseResponseInterfaceInfo_ = {
     code?: number;
     data?: InterfaceInfo;
@@ -23,9 +17,9 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseLoginUserVO_ = {
+  type BaseResponseListUserVO_ = {
     code?: number;
-    data?: LoginUserVO;
+    data?: UserVO[];
     message?: string;
   };
 
@@ -35,33 +29,21 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseObject_ = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
   type BaseResponsePageInterfaceInfo_ = {
     code?: number;
     data?: PageInterfaceInfo_;
     message?: string;
   };
 
-  type BaseResponsePagePostVO_ = {
-    code?: number;
-    data?: PagePostVO_;
-    message?: string;
-  };
-
-  type BaseResponsePageUser_ = {
-    code?: number;
-    data?: PageUser_;
-    message?: string;
-  };
-
   type BaseResponsePageUserVO_ = {
     code?: number;
     data?: PageUserVO_;
-    message?: string;
-  };
-
-  type BaseResponsePostVO_ = {
-    code?: number;
-    data?: PostVO;
     message?: string;
   };
 
@@ -103,33 +85,27 @@ declare namespace API {
     id?: number;
   };
 
-  type getPostVOByIdUsingGETParams = {
-    /** id */
-    id?: number;
-  };
-
   type getUserByIdUsingGETParams = {
     /** id */
     id?: number;
   };
 
-  type getUserVOByIdUsingGETParams = {
-    /** id */
+  type IdRequest = {
     id?: number;
   };
 
   type InterfaceInfo = {
-    createtime?: string;
+    createTime?: string;
     description?: string;
     id?: number;
-    isdelete?: number;
+    isDelete?: number;
     method?: string;
     name?: string;
-    requestheader?: string;
-    requestparams?: string;
-    responseheader?: string;
+    requestHeader?: string;
+    requestParams?: string;
+    responseHeader?: string;
     status?: number;
-    updatetime?: string;
+    updateTime?: string;
     url?: string;
     userId?: number;
   };
@@ -154,6 +130,11 @@ declare namespace API {
     responseHeader?: string;
     status?: number;
     url?: string;
+  };
+
+  type InvokeInterfaceRequest = {
+    id?: number;
+    userRequestParams?: string;
   };
 
   type listInterfaceInfoByPageUsingGETParams = {
@@ -188,11 +169,27 @@ declare namespace API {
     userId?: number;
   };
 
-  type LoginUserVO = {
-    createTime?: string;
+  type listUserByPageUsingGETParams = {
+    current?: number;
     id?: number;
-    updateTime?: string;
-    userAvatar?: string;
+    mpOpenId?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    unionId?: string;
+    userName?: string;
+    userProfile?: string;
+    userRole?: string;
+  };
+
+  type listUserUsingGETParams = {
+    current?: number;
+    id?: number;
+    mpOpenId?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    unionId?: string;
     userName?: string;
     userProfile?: string;
     userRole?: string;
@@ -216,32 +213,6 @@ declare namespace API {
     total?: number;
   };
 
-  type PagePostVO_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: PostVO[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
-  type PageUser_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: User[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
   type PageUserVO_ = {
     countId?: string;
     current?: number;
@@ -255,90 +226,22 @@ declare namespace API {
     total?: number;
   };
 
-  type PostAddRequest = {
-    content?: string;
-    tags?: string[];
-    title?: string;
-  };
-
-  type PostEditRequest = {
-    content?: string;
-    id?: number;
-    tags?: string[];
-    title?: string;
-  };
-
-  type PostFavourAddRequest = {
-    postId?: number;
-  };
-
-  type PostFavourQueryRequest = {
-    current?: number;
-    pageSize?: number;
-    postQueryRequest?: PostQueryRequest;
-    sortField?: string;
-    sortOrder?: string;
-    userId?: number;
-  };
-
-  type PostQueryRequest = {
-    content?: string;
-    current?: number;
-    favourUserId?: number;
-    id?: number;
-    notId?: number;
-    orTags?: string[];
-    pageSize?: number;
-    searchText?: string;
-    sortField?: string;
-    sortOrder?: string;
-    tags?: string[];
-    title?: string;
-    userId?: number;
-  };
-
-  type PostThumbAddRequest = {
-    postId?: number;
-  };
-
-  type PostUpdateRequest = {
-    content?: string;
-    id?: number;
-    tags?: string[];
-    title?: string;
-  };
-
-  type PostVO = {
-    content?: string;
-    createTime?: string;
-    favourNum?: number;
-    hasFavour?: boolean;
-    hasThumb?: boolean;
-    id?: number;
-    tagList?: string[];
-    thumbNum?: number;
-    title?: string;
-    updateTime?: string;
-    user?: UserVO;
-    userId?: number;
-  };
-
   type uploadFileUsingPOSTParams = {
     biz?: string;
   };
 
   type User = {
+    accessKey?: string;
     createTime?: string;
+    gender?: number;
     id?: number;
     isDelete?: number;
-    mpOpenId?: string;
-    unionId?: string;
+    secretKey?: string;
     updateTime?: string;
     userAccount?: string;
     userAvatar?: string;
     userName?: string;
     userPassword?: string;
-    userProfile?: string;
     userRole?: string;
   };
 
@@ -349,39 +252,15 @@ declare namespace API {
     userRole?: string;
   };
 
-  type userLoginByWxOpenUsingGETParams = {
-    /** code */
-    code: string;
-  };
-
   type UserLoginRequest = {
     userAccount?: string;
     userPassword?: string;
-  };
-
-  type UserQueryRequest = {
-    current?: number;
-    id?: number;
-    mpOpenId?: string;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
-    unionId?: string;
-    userName?: string;
-    userProfile?: string;
-    userRole?: string;
   };
 
   type UserRegisterRequest = {
     checkPassword?: string;
     userAccount?: string;
     userPassword?: string;
-  };
-
-  type UserUpdateMyRequest = {
-    userAvatar?: string;
-    userName?: string;
-    userProfile?: string;
   };
 
   type UserUpdateRequest = {

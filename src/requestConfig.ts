@@ -25,7 +25,7 @@ interface ResponseStructure {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const requestConfig: RequestConfig = {
-  baseURL:'http://localhost:8101',
+  baseURL:'http://localhost:8102',
   withCredentials: true,
   // 错误处理： umi@3 的错误处理方案。
   errorConfig: {
@@ -101,9 +101,9 @@ export const requestConfig: RequestConfig = {
     (response) => {
       // 拦截响应数据，进行个性化处理
       const { data } = response as unknown as ResponseStructure;
-
-      if (data?.success === false) {
-        message.error('请求失败！');
+      console.log('data', data);
+      if (data?.code !== 0) {
+        throw new Error(data.message)
       }
       return response;
     },
